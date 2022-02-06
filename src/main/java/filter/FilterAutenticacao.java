@@ -59,6 +59,9 @@ public class FilterAutenticacao extends HttpFilter implements Filter {
 			conn.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
+			RequestDispatcher disp = request.getRequestDispatcher("erro.jsp");
+			request.setAttribute("msg", e.getMessage());
+			disp.forward(request, response);			
 			try {
 				conn.rollback();
 			} catch (SQLException e1) {

@@ -7,10 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-<% 
-	out.print(request.getParameter("nome"));
-	out.print(request.getParameter("idade"));
-%>
+	<h1>Mensagem de erro! Entre em contato com o suporte!</h1>
+	<%
+		out.println(request.getAttribute("msg"));
+	%>
 </body>
 </html>

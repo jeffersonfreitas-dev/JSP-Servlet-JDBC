@@ -2,6 +2,8 @@ package database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 public class SingleConnectionBanco {
 
@@ -31,6 +33,40 @@ public class SingleConnectionBanco {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+	
+	
+	public static void closeConnection() {
+		if(conn != null) {
+			try {
+				conn.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw new IllegalArgumentException("Erro ao fechar a conexão com o banco de dados::: " + e.getMessage());
+			}
+		}
+	}
+	
+	public static void closeStatement(Statement stmt) {
+		if(stmt != null) {
+			try {
+				stmt.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw new IllegalArgumentException("Erro ao fechar o Statement::: " + e.getMessage());
+			}
+		}
+	}
+	
+	public static void closeResultSet(ResultSet rs) {
+		if (rs != null) {
+			try {
+				rs.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw new IllegalArgumentException("erro ao fechar o ResultSet::: " + e.getMessage());
+			}
 		}
 	}
 }
